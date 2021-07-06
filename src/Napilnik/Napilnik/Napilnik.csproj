@@ -38,6 +38,15 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="OnlineShop\Cart.cs" />
+        <Compile Include="OnlineShop\IProductsInStock.cs" />
+        <Compile Include="OnlineShop\IReadOnlyOrderItem.cs" />
+        <Compile Include="OnlineShop\Order.cs" />
+        <Compile Include="OnlineShop\OrderItem.cs" />
+        <Compile Include="OnlineShop\Product.cs" />
+        <Compile Include="OnlineShop\ProductCell.cs" />
+        <Compile Include="OnlineShop\Shop.cs" />
+        <Compile Include="OnlineShop\Warehouse.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
