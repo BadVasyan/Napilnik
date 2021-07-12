@@ -1,5 +1,4 @@
-﻿using System;
-using Napilnik.OnlineShop;
+﻿using Napilnik.LogSystem;
 
 namespace Napilnik
 {
@@ -7,25 +6,20 @@ namespace Napilnik
   {
     public static void Main(string[] args)
     {
-      ShopUseCase();
+      UseCase();
     }
 
-    private static void ShopUseCase()
+    private static void UseCase()
     {
-      Warehouse warehouse = new Warehouse();
-      Shop shop = new Shop(warehouse);
+      var logWriterFactory = new LogWriterFactory();
 
-      Product iPhone12 = new Product("IPhone 12", 1300);
-      Product iPhone11 = new Product("IPhone 11", 999);
+      var consoleLogs = new Pathfinder(logWriterFactory.CreateConsoleWriter());
+      var fileLogs = new Pathfinder(logWriterFactory.CreateFileWriter());
+      var fridayConsoleLogs = new Pathfinder(logWriterFactory.CreateFridayConsoleWriter());
+      var fridayFileLogs = new Pathfinder(logWriterFactory.CreateFridayFileWriter());
+      var consoleAndFridayFileLogs = new Pathfinder(logWriterFactory.CreateConsoleAndFridayFileWriter());
 
-      warehouse.Deliver(iPhone12, 10);
-      warehouse.Deliver(iPhone11, 1);
-
-      Cart cart = shop.Cart();
-      cart.Add(iPhone12, 4);
-      cart.Add(iPhone11, 3);
-
-      Console.WriteLine(cart.Order().List);
+      consoleLogs.Find();
     }
   }
 }
