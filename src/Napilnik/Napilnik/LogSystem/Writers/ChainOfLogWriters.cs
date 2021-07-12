@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Napilnik.LogSystem.Writers
 {
-  public class ChainOfLogWriters : ILogWriter
+  public class ChainOfLogWriters : LogWriter
   {
     private readonly IEnumerable<ILogWriter> _logWriters;
 
@@ -19,17 +19,14 @@ namespace Napilnik.LogSystem.Writers
       _logWriters = logWriters;
     }
 
-    public void Write(string message)
-    {
-      if (string.IsNullOrEmpty(message))
-        throw new ArgumentException("Message can't be null or empty", nameof(message));
+    public static ILogWriter Create(params ILogWriter[] writers) =>
+      new ChainOfLogWriters(writers);
 
+    protected override void WriteMessage(string message)
+    {
       foreach (ILogWriter writer in _logWriters)
         writer.Write(message);
     }
-
-    public static ILogWriter Create(params ILogWriter[] writers) =>
-      new ChainOfLogWriters(writers);
 
     private static bool ContainsNullWriter(IEnumerable<ILogWriter> logWriters) =>
       logWriters.Any(writer => writer == null);

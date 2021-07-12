@@ -2,14 +2,9 @@ using System;
 
 namespace Napilnik.LogSystem.Writers
 {
-  public class ConsoleLogWriter : ILogWriter
+  public class ConsoleLogWriter : LogWriter
   {
-    public void Write(string message)
-    {
-      if (string.IsNullOrEmpty(message))
-        throw new ArgumentException("Message can't be null or empty", nameof(message));
-
+    protected override void WriteMessage(string message) => 
       Console.WriteLine(message);
-    }
   }
 }

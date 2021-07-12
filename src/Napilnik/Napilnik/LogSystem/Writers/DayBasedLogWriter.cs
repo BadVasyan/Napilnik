@@ -2,7 +2,7 @@ using System;
 
 namespace Napilnik.LogSystem.Writers
 {
-  public class DayBasedLogWriter : ILogWriter
+  public class DayBasedLogWriter : LogWriter
   {
     private readonly ILogWriter _logWriter;
     private readonly DayOfWeek _day;
@@ -13,11 +13,8 @@ namespace Napilnik.LogSystem.Writers
       _day = day;
     }
 
-    public void Write(string message)
+    protected override void WriteMessage(string message)
     {
-      if (string.IsNullOrEmpty(message))
-        throw new ArgumentException("Message can't be null or empty", nameof(message));
-      
       if (DateTime.Now.DayOfWeek.Equals(_day))
         _logWriter.Write(message);
     }
