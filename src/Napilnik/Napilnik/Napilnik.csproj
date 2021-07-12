@@ -38,6 +38,13 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="LogSystem\LogWriterFactory.cs" />
+        <Compile Include="LogSystem\Pathfinder.cs" />
+        <Compile Include="LogSystem\Writers\ChainOfLogWriters.cs" />
+        <Compile Include="LogSystem\Writers\ConsoleLogWriter.cs" />
+        <Compile Include="LogSystem\Writers\DayBasedLogWriter.cs" />
+        <Compile Include="LogSystem\Writers\FileLogWriter.cs" />
+        <Compile Include="LogSystem\Writers\ILogWriter.cs" />
         <Compile Include="OnlineShop\Cart.cs" />
         <Compile Include="OnlineShop\IProductsInStock.cs" />
         <Compile Include="OnlineShop\IReadOnlyOrderItem.cs" />
